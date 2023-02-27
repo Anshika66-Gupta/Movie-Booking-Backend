@@ -62,7 +62,7 @@ const getAllMovies = async (req, res, next) => {
     try { 
         movies = await Movie.find();
     }
-    catch { err } {
+    catch (err) {
         return console.log(err);
     }
     if (!movies){
@@ -73,4 +73,22 @@ const getAllMovies = async (req, res, next) => {
     }
     return res.status(200).json({movies});
 }
-module.exports = {getAllMovies, addMovie}
+const getMovieById = async (req, res, next) => { 
+    const id = req.params.id;
+    let movies;
+    try {
+        movies = await Movie.findById(id);
+    } catch (err) { 
+        return console.log(err);
+    }
+    if (!movies){
+        return res.status(500).json({
+            message: 'Something went wrong',
+        });
+    }
+    return res.status(200).json({movies});
+    
+}
+
+
+module.exports = {getAllMovies, addMovie, getMovieById}

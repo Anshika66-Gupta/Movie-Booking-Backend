@@ -5,14 +5,16 @@ const dotenv  = require ('dotenv');
 const userRouter  = require ("./routes/user-routes.js");
 const adminRouter  = require  ("./routes/admin-routes.js");
 const movieRouter  = require  ("./routes/movie-routes.js");
+const bookingRouter = require("./routes/booking-routes.js");
 dotenv.config();
-const PORT=4500;
+const PORT=3500;
 
 //middleware routes
 app.use(express.json());
 app.use("/user", userRouter); 
 app.use("/admin", adminRouter); 
-app.use("/movie", movieRouter)
+app.use("/movie", movieRouter);
+app.use("/booking", bookingRouter);   
 
 mongoose.connect(`mongodb+srv://ansgupta01:${process.env.MONGODB_PASSWORD}@movie-booking.yd2fpqw.mongodb.net/?retryWrites=true&w=majority`,
     {
