@@ -31,8 +31,8 @@ const addAdmin = async (req, res, next) => {
     return res.status(201).json({ message: "Admin created successfully" });
 };
 
-const adminLogin = async (req, res, next) => { 
-    const {email, password } = req.body;
+const adminLogin = async (req, res, next) => {
+    const { email, password } = req.body;
     if (!email && email.trim() === "" && !password && password.trim() === "") {
         return res.status(422).json({ message: "Invalid Input data" });
     }
@@ -40,11 +40,11 @@ const adminLogin = async (req, res, next) => {
     try {
         existingAdmin = await Admin.findOne({ email });
     }
-    catch (err) { 
+    catch (err) {
         return next(err);
     }
     if (!existingAdmin) {
-        return res.status(401).json({ message: "Admin not found"});
+        return res.status(401).json({ message: "Admin not found" });
     }
     const isPasswordCorrect = bcrypt.compareSync(password, existingAdmin.password
     );
@@ -54,6 +54,23 @@ const adminLogin = async (req, res, next) => {
     const token = jwt.sign({ id: existingAdmin._id }, process.env.SECRET_KEY, {
         expiresIn: "7d",
     })
-    return res.status(200).json({ message: "Login successful", token,id:existingAdmin._id });
+    return res.status(200).json({ message: "Login successful", token, id: existingAdmin._id });
+};
+
+const getAdmins = async (req, res, next) => {
+    let admins;
+    try {
+        admins = await Admin.find();
+    }
+    catch (err) { 
+        return next(err);
+    }
+    if (!admins) {
+        return res.status(500).json({ message: "Unable to get admins" });
+    }
+    return res.status(200).json(admins);
+    
 }
-module.exports = {addAdmin, adminLogin}
+
+
+module.exports = {addAdmin, adminLogin, getAdmins}
