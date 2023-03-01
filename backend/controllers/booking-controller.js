@@ -1,6 +1,7 @@
 const Bookings = require("../models/Booking");
 const User = require("../models/User");
 const Movie = require("../models/Movie");
+const { default: mongoose } = require("mongoose");
 const newBooking = async (req, res, next) => {
     const { movie, date, seatNumber, user } = req.body;
     
@@ -72,7 +73,18 @@ const deleteBooking = async (req, res, next) => {
     const id = req.params.id;
     let booking;
     try {
-        const booking = await Bookings.findByIdAndRemove().populate("user movie")
+        booking = await Bookings.findByIdAndRemove(id).populate("user movie");
+        console.log(booking);
+        const session = await mongoose.startSession();
+        session.startTransaction();
+       await booking.user.bookings.pull(booking);
+       await booking.movie.bookings.pull(booking);
+        
+        await booking.movie.save({ session });
+        await booking.user.save({ session });
+        session.commitTransaction(); 
+        
+        
     }
     catch (err) {
         return console.error(err);

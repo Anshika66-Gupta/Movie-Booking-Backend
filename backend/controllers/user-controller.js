@@ -92,4 +92,19 @@ const updateUser = async (req, res, next) => {
     }
     return res.status(200).json({ message: "login successfull" });
  }
-module.exports = {login, getAllUser, updateUser, deleteUser, signup}
+ 
+const getBookingsofUser = async (req, res, next) => {
+    const id = req.params.id;
+    let bookings;
+    try {
+        bookings = await Bookings.findById({user: id});
+    } catch(err) {
+        return console.log(err);
+    }
+    if (!bookings) {
+        return res.status(500).json({ message: "Unexpected Error Occurred" })
+    }
+    return res.status(200).json({ bookings});   
+ }
+ 
+module.exports = {login, getAllUser, updateUser, deleteUser, signup, getBookingsofUser}
