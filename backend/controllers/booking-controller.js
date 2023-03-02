@@ -83,8 +83,6 @@ const deleteBooking = async (req, res, next) => {
         await booking.movie.save({ session });
         await booking.user.save({ session });
         session.commitTransaction(); 
-        
-        
     }
     catch (err) {
         return console.error(err);
