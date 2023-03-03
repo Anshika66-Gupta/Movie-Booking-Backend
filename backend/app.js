@@ -6,6 +6,8 @@ const userRouter  = require ("./routes/user-routes.js");
 const adminRouter  = require  ("./routes/admin-routes.js");
 const movieRouter  = require  ("./routes/movie-routes.js");
 const bookingRouter = require("./routes/booking-routes.js");
+const cors = require('cors');
+app.use(cors());
 dotenv.config();
 const PORT=3500;
 

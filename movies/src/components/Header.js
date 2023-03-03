@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import MovieIcon from '@mui/icons-material/Movie';
 import { getAllMovies } from '../api-helpers/api-helpers';
-import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //const dummyArray = ["Selfie", "Pathan", "Antman", "Aquaman", "Parasite"];
 //const movies = ["Selfie", "Pathan", "Antman", "Aquaman", "Parasite"];
 
@@ -23,7 +23,7 @@ const Header = () => {
     }, []);
     
     return (
-        <AppBar sx={{bgcolor:"#2b2d42"}}>
+        <AppBar position= "sticky" sx={{bgcolor:"#2b2d42"}}>
             <Toolbar>
                 <Box width={"20%"}>
                     
@@ -38,11 +38,9 @@ const Header = () => {
                 </Box>
                 <Box display={'flex'}>
                     <Tabs textColor= "inherit" indicatorColor='secondary' value={value} onChange={(e,val) => setValue(val)}>
-                        <Tab
-                            Routes={Route} to="/movies"
-                            label="All Movies" />
-                    <Tab label = "Auth"/>
-                    <Tab label = "Admin"/>
+                        <Tab LinkComponent={Link} to='/movies' label="All Movies" />
+                    <Tab label = "Auth" LinkComponent={Link} to='/auth'/>
+                    <Tab label = "Admin" LinkComponent={Link} to='/admin'/>
                     </Tabs>
                 </Box>
             </Toolbar>
