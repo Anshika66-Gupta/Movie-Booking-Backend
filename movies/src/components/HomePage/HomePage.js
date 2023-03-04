@@ -1,8 +1,16 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Button, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import MovieItem from '../Movies/MovieItem'
+import { Link } from 'react-router-dom'
+//import { MovieItem } from './Movies/MovieItem';
+import { getAllMovies } from "../../api-helpers/api-helpers";
 
 const HomePage = () => {
+    const [movies, setMovies] = useState([])
+    useEffect(() => {
+        getAllMovies().then((data)=>setMovies(data.movies)).catch(err => console.log(err))
+    }, [])
+    console.log(movies);
     return (
         
       <Box width={'100%'} height="100%" margin="auto" marginTop={2}>
@@ -19,11 +27,22 @@ const HomePage = () => {
                   
           </Typography>
           </Box>
-          <Box display="flex" width="80%" justifyContent={"center"} flexWrap="wrap">
-              {[1, 2, 3, 4].map((item) => <MovieItem key={item} />)}
-              
-          </Box>
-          
+            <Box sx={{ display: 'flex', width: "100%", flexDirection: 'row', alignItems: 'center', justifyContent: "center", flexWrap: "wrap" }}>
+            
+                {movies && movies.slice(0,4).map((movie, index) => <MovieItem
+                    id={movie.id}
+                    title={movie.title}
+                    posterUrl={movie.posterUrl}
+                    releaseDate={movie.releaseDate}
+                    key={index}
+                />)}
+            </Box>
+            
+            <Box display="flex" padding={5} margin="auto">
+                <Button LinkComponent={Link} to="/movies" variant='outline' sx={{ margin: 'auto', color: '#2b2d42' }}>
+                    View all Movies
+                     </Button>
+            </Box>
     </Box>
   )
 }
