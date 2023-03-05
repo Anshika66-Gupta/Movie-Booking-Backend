@@ -2,9 +2,13 @@ import React from 'react'
 import AuthForm from '../Auth/AuthForm'
 
 const Auth = () => {
-    return(
+    const getData = (data) => {
+        console.log("Auth", data);
+    }
+    return (
+        
     <div>
-        <AuthForm />
+        <AuthForm onSubmit={getData} />
     </div>
     )
 };

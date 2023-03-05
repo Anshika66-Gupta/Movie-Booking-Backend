@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthForm from '../Auth/AuthForm'
+import AuthForm from './AuthForm'
 
 const AdminAuth = () => {
     return(
