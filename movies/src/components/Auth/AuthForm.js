@@ -4,7 +4,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import React, { useState } from 'react';
 const labelStyle = {mt:1 ,mb:2}
 
-const AuthForm = ({onSubmit}) => {
+const AuthForm = ({onSubmit, isAdmin}) => {
     const [inputs, setInputs] = useState({
         name: " ",
         email: " ",
@@ -21,7 +21,7 @@ const AuthForm = ({onSubmit}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(inputs);  
-        onSubmit(inputs);
+        onSubmit({ inputs, signup: isAdmin?false:isSignup });
     };
 
     return (
@@ -45,7 +45,7 @@ const AuthForm = ({onSubmit}) => {
                     margin="auto"
                     alignContent={"center"}
                 >
-                    { isSignup && <> <FormLabel
+                    {!isAdmin && isSignup && <> <FormLabel
                     sx={labelStyle}
                     >Name</FormLabel>
                         <TextField
@@ -74,8 +74,13 @@ const AuthForm = ({onSubmit}) => {
                     <Button sx={{ mt: 2, borderRadius: 10, bgcolor: '#2b2d42' }} type='submit' fullWidth
                     variant='contained'
                     >{isSignup ? "Signup" : "Login"}</Button>
-                    <Button onClick={()=>setisSignup(!isSignup)} sx={{ mt: 2, borderRadius: 10 }} fullWidth
-                    >Switch To {isSignup ? "Login":"Signup"}  </Button>
+                    
+                    
+                    {( !isAdmin && 
+                        
+                        <Button onClick={() => setisSignup(!isSignup)} sx={{ mt: 2, borderRadius: 10 }} fullWidth
+                    >Switch To {isSignup ? "Login" : "Signup"}  </Button>
+                    )}
                 </Box>
             </form>
     </Dialog>
