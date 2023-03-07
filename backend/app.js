@@ -9,7 +9,7 @@ const bookingRouter = require("./routes/booking-routes.js");
 const cors = require('cors');
 app.use(cors());
 dotenv.config();
-const PORT=4000;
+const PORT=4500;
 
 //middleware routes
 app.use(express.json());
