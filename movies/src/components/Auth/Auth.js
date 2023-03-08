@@ -17,6 +17,8 @@ const Auth = () => {
                 //.then((res) => console.log(res))
                 //.then(() => dispatch(userActions.login()))
                 .catch((err) => console.log(err));
+            
+            
         }
     return (
     <div>
