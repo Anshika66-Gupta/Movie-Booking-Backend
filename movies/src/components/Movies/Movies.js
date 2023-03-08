@@ -26,8 +26,10 @@ const Movies = () => {
       justifyContent= "flex-start"
       flexWrap={"wrap"}
     >
-      {movies && movies.slice(0,4).map((movie, index) => <MovieItem
-                    id={movie.id}
+      {movies &&
+        movies.slice(0, 4).map((movie, index) =>
+        <MovieItem
+                    id={movie._id}
                     title={movie.title}
                     posterUrl={movie.posterUrl}
                     releaseDate={movie.releaseDate}

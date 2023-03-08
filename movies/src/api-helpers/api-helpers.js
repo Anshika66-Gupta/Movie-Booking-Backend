@@ -26,11 +26,20 @@ export const sendUserAuthRequest = async (data, signup) => {
 export const sendAdminAuthRequest = async (data) => {
     const res = await axios
         .post("admin/login", {
-        email: data.email,
-        password: data.password
-    }).catch(err => console.log(err));
+            email: data.email,
+            password: data.password
+        }).catch(err => console.log(err));
     if (res.statusCode !== 200) {
         return console.log("Unexpected Error occured");
+    }
+    const resData = await res.data;
+    return resData;
+};
+export const getMovieDetails = async (id) => {
+    const res = await axios.get(`movie/${id}`).catch((err) => console.log(err));
+    
+    if (res.statusCode !== 200) {
+        return console.error("Unexpected error");
     }
     const resData = await res.data;
     return resData;
