@@ -15,7 +15,7 @@ const MovieItem = ({title, releaseDate, posterUrl, id}) => {
           <img
               height={'50%'}
               width="100%"
-              src="{poserUrl" alt={title} />
+        src={posterUrl} alt={title} />
    
     <CardContent>
       <Typography gutterBottom variant="h5" component="div">
@@ -28,7 +28,7 @@ const MovieItem = ({title, releaseDate, posterUrl, id}) => {
     <CardActions>
       <Button LinkComponent={Link} to ={`/booking/${id}`} size="small">Book Now</Button>
      
-    </CardActions>
+    </CardActions>   
   </Card>
   )
 }

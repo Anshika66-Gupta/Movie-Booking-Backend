@@ -28,7 +28,9 @@ const addMovie = async (req, res, next) => {
     //create a new movie{
     
     const { title, description, releaseDate, posterUrl, featured, actors } = req.body;
-    if (!title && title.trim() === "" && !description && description.trim() === "" && !posterUrl && posterUrl.trim() === " ") {
+    if (!title && title.trim() === "" && !description && description.trim() === "" &&!posterUrl && posterUrl.trim() === " "
+    )
+    {
         return res.status(422).json({ message: "Invalid Inputs" });
     }
     

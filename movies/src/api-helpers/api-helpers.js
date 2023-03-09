@@ -43,5 +43,19 @@ export const getMovieDetails = async (id) => {
     }
     const resData = await res.data;
     return resData;
-    
 }
+export const newBooking = async (data) => {
+    const res = axios
+        .post('/booking', {
+            movie: data.movie,
+            seatNumber: data.seatNumber,
+            date: data.date,
+            user: localStorage.getItem('userId'),
+        }).catch((err) => console.log(err));
+    if (res.data !== 201) {
+        return console.log("unexpected Error")
+    }
+    const resData = await res.data;
+    return resData;
+    
+};

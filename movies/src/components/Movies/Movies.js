@@ -27,7 +27,7 @@ const Movies = () => {
       flexWrap={"wrap"}
     >
       {movies &&
-        movies.slice(0, 4).map((movie, index) =>
+        movies.map((movie, index) =>
         <MovieItem
                     id={movie._id}
                     title={movie.title}
