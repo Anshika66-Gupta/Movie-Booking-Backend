@@ -6,6 +6,7 @@ import Bookings from "./components/Bookings/Booking";
 import Header from "./components/Header";
 import HomePage from "./components/HomePage/HomePage";
 import Movies from "./components/Movies/Movies";
+import UserProfile from "./profile/UserProfile";
 
 function App() {
   const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
@@ -23,7 +24,9 @@ function App() {
           <Route path="/movies" element={<Movies /> } />
           <Route path="/admin" element={<Admin />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/booking/:id " element={<Bookings />} />
+          <Route path="/user" element={<UserProfile />} />
+          <Route path="/bookings/:id" element={<Bookings />} />
+          
 
         </Routes>
       </section>

@@ -26,8 +26,9 @@ const Bookings = () => {
     }
     return (
         <div>
-            {movie &&
+            {movie && 
                 <Fragment>
+                    { " "}
                     <Typography padding={3}
                         fontFamily="fantasy"
                         variant='h4'

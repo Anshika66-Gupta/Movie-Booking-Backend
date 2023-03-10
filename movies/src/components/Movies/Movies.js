@@ -27,14 +27,14 @@ const Movies = () => {
       flexWrap={"wrap"}
     >
       {movies &&
-        movies.map((movie, index) =>
+        movies.map((movie, index) => (
         <MovieItem
                     id={movie._id}
                     title={movie.title}
                     posterUrl={movie.posterUrl}
                     releaseDate={movie.releaseDate}
                     key={index}
-                />)}
+                />))}
       
     </Box>
   </Box> 
