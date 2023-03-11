@@ -105,6 +105,20 @@ const getBookingsofUser = async (req, res, next) => {
         return res.status(500).json({ message: "Unexpected Error Occurred" })
     }
     return res.status(200).json({ bookings});   
- }
+}
+const getUserById = async (req, res, next) => {
+    const id = req.params.id;
+    let user;
+    try {
+        user = await User.findById(id);
+    }
+    catch(err) {
+        return console.log(err);
+    }
+    if (!user) {
+        return res.status(500).json({ message: "Unexpected Error Occurred" })
+    }
+    return res.status(200).json({ user });
+};
  
-module.exports = {login, getAllUser, updateUser, deleteUser, signup, getBookingsofUser}
+module.exports = {login, getAllUser, updateUser, deleteUser, signup, getBookingsofUser,getUserById}

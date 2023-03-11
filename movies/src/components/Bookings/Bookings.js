@@ -26,9 +26,9 @@ const Bookings = () => {
     }
     return (
         <div>
-            {movie && 
+            {movie &&
                 <Fragment>
-                    { " "}
+
                     <Typography padding={3}
                         fontFamily="fantasy"
                         variant='h4'
@@ -61,53 +61,56 @@ const Bookings = () => {
                                     starrer:
                                     {movie.actors.map((actor) => " " + actor + "")}
                                 </Typography>
+
                                 <Typography fontWeight={'bold'} marginTop={1} >
                                     Release Date: {new Date(movie.releaseDate).toDateString()}
                                 </Typography>
-                                <Box width={"50%"} paddingTop={3}>
-                                    <form onSubmit={handleSubmit}>
-                                        <Box
-                                            padding={"50%"}
-                                            margin={'auto'}
-                                            display="flex"
-                                            flexDirection={'column'}
-                                        >
-                                            <FormLabel>
-                                                seat Number
-                                            </FormLabel>
-                                            <TextField
-                                                value={inputs.seatNumber}
-                                                onChange={handleChange}
-                                                name='setNumber'
-                                                type={'number'}
-                                                margin="normal"
-                                                variant='standard'
-                                            />
-                                            <FormLabel>
-                                                Booking Date
-                                            </FormLabel>
-                                            <TextField
-                                                value={inputs.date}
-                                                onChange={handleChange}
-                                                name='date'
-                                                type={"date"}
-                                                margin="normal"
-                                                variant='standard'
-                                            />
-                                            <Button type='submit' sx={{ mt: 3 }}>
-                                                Book Now
-                                            </Button>
-                                        </Box>
-                                    </form>
 
-                                </Box>
+
+
                             </Box>
+                        </Box>
+                        <Box width={"50%"} paddingTop={3}>
+                            <form onSubmit={handleSubmit}>
+                                <Box
+                                    padding={5}   
+                                    margin={'auto'}
+                                    display="flex"
+                                    flexDirection={'column'}
+                                >
+                                    <FormLabel>
+                                        seat Number
+                                    </FormLabel>
+                                    <TextField
+                                        value={inputs.seatNumber}
+                                        onChange={handleChange}
+                                        name='seatNumber'
+                                        type={'number'}
+                                        margin="normal"
+                                        variant='standard'
+                                    />
+                                    <FormLabel>
+                                        Booking Date
+                                    </FormLabel>
+                                    <TextField
+                                        value={inputs.date}
+                                        onChange={handleChange}
+                                        name='date'
+                                        type={"date"}
+                                        margin="normal"
+                                        variant='standard'
+                                    />
+                                    <Button type='submit' sx={{ mt: 3 }}>
+                                        Book Now
+                                    </Button>
+                                </Box>
+                            </form>
                         </Box>
                     </Box>
                 </Fragment>
             }
+
         </div>
     )
 }
-
 export default Bookings

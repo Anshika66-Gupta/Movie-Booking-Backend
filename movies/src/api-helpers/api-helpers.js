@@ -52,7 +52,7 @@ export const newBooking = async (data) => {
             date: data.date,
             user: localStorage.getItem('userId'),
         }).catch((err) => console.log(err));
-    if (res.data !== 201) {
+    if (res.status !== 201) {
         return console.log("unexpected Error")
     }
     const resData = await res.data;
@@ -61,16 +61,34 @@ export const newBooking = async (data) => {
 
 export const getUserBooking = async () => {
     const id = localStorage.getItem('userId');
-    const res =  axios
-        .get(`/user/bookings/${id}`)
+    const res = axios
+        .get(`/user/booking/${id}`)
         .catch((err) => console.log(err));
-        if (res.data !== 200) {
-            return console.log("unexpected Error")
-        }
-        const resData = await res.data;
-        return resData;
+    if (res.status !== 200) {
+        return console.log("unexpected Error")
+    }
+    const resData = await res.data;
+    return resData;
+};
+export const deleteBooking = async (id) => {
     
+    const res = await axios
+        .delete(`/booking/${id}`)
+        .catch((err) => console.log(err));
+    if (res.status !== 200) {
+        return console.log("unexpected Error");
+    }
+    const resData = await res.data;
+    return resData;
+};
 
-
-
+export const getUserDetails =async  () => {
+    const id = localStorage.getItem("userId");
+    const res = await axios.get(`/user/${id}`).catch((err) => console.log(err));
+    
+    if (res.status !== 200) { 
+     return console.log("unexpected Error");   
+    }
+    const resData = await res.data;
+    return resData;
 }

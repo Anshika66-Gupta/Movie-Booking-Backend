@@ -5,7 +5,7 @@ const bookingRouter = express.Router();
 
 bookingRouter.post("/", newBooking);
 bookingRouter.get("/:id", getBookById);
-bookingRouter.delete("/id", deleteBooking);
+bookingRouter.delete("/:id", deleteBooking);
 
 
 module.exports = bookingRouter;
