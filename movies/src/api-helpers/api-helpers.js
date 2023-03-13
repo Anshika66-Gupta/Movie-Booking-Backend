@@ -37,7 +37,7 @@ export const sendAdminAuthRequest = async (data) => {
 };
 export const getMovieDetails = async (id) => {
     const res = await axios.get(`movie/${id}`).catch((err) => console.log(err));
-    
+
     if (res.statusCode !== 200) {
         return console.error("Unexpected error");
     }
@@ -71,7 +71,7 @@ export const getUserBooking = async () => {
     return resData;
 };
 export const deleteBooking = async (id) => {
-    
+
     const res = await axios
         .delete(`/booking/${id}`)
         .catch((err) => console.log(err));
@@ -82,13 +82,51 @@ export const deleteBooking = async (id) => {
     return resData;
 };
 
-export const getUserDetails =async  () => {
+export const getUserDetails = async () => {
     const id = localStorage.getItem("userId");
     const res = await axios.get(`/user/${id}`).catch((err) => console.log(err));
-    
-    if (res.status !== 200) { 
-     return console.log("unexpected Error");   
+
+    if (res.status !== 200) {
+        return console.log("unexpected Error");
     }
     const resData = await res.data;
     return resData;
+}
+export const addMovie = async (data) => {
+    const res = axios
+        .post("/movie", {
+            title: data.title,
+            description: data.description,
+            releaseDate: data.releaseDate,
+            posterUrl: data.posterUrl,
+            featured: data.featured,
+            actors: data.actors,
+            admin: localStorage.getItem("adminId"),
+        },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        ).catch(err => console.log(err));
+    if (res.status !== 201) {
+        return console.log("Unexpected Error");
+    }
+    const resData = await res.data;
+    return resData;
+};
+
+export const getAdminById = async () => {
+    const adminId = localStorage.getItem("adminId");
+    const res = await axios
+        .get(`/admin/${adminId}`)
+        .catch(err => console.log(err));
+    
+    
+    if (res.status !== 200) { 
+        return console.log("Unexpected Error");
+    }
+    const resData = await res.data;
+    return resData;
+    
 }

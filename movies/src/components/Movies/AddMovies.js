@@ -1,5 +1,6 @@
 import { Box, Button, Checkbox, FormLabel, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react';
+import { addMovie } from '../../api-helpers/api-helpers';
 const labelProps = {
   mt: 1,
   mb: 1,
@@ -12,13 +13,20 @@ const AddMovies = () => {
     releaseDate: "",
     featured: false,
   });
+  const [actors, setActors] = useState([]);
+  const [actor, setActor] = useState("");
+  
+  
   const handleChange = (e) => {
     setInputs((prevState) => ({ ...prevState, [e.target.name]: e.target.value }))
   }
 
   const handleSubmit = (e) => { 
     e.preventDefault();
-    console.log(inputs);
+    console.log(inputs, actors);
+    addMovie({ ...inputs, actors })
+      .then(res => console.log(res))
+    .catch(err => console.log(err));
   }
   
   return (
@@ -69,10 +77,19 @@ const AddMovies = () => {
             Actor
           </FormLabel>
           <Box display={"flex"}>
-            <TextField name="actor" variant='standard'
+            <TextField 
+              value={actor}
+              onChange={(e)=>setActor(e.target.value)}
+              name="actor"
+              variant='standard'
               margin='normal'
             />
-            <Button>
+            <Button
+              onClick={() => {
+                setActors([...actors, actor]);
+                setActor("");
+            }}
+            >
               Add
             </Button>
           </Box>
