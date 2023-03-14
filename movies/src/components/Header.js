@@ -3,6 +3,7 @@ import {
     AppBar,
     Autocomplete,
     Box,
+    IconButton,
     Tab,
     Tabs,
     TextField,
@@ -35,8 +36,9 @@ const Header = () => {
         <AppBar position="sticky" sx={{ bgcolor: "#2b2d42" }}>
             <Toolbar>
                 <Box width={"20%"}>
-
-                    <MovieIcon />
+                    <IconButton LinkComponent={Link} to="/" >
+                        <MovieIcon />
+                        </IconButton>
                 </Box>
                 <Box width={"30%"} margin={"auto"}>
                     <Autocomplete
